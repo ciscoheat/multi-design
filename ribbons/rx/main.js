@@ -76,7 +76,7 @@ var trails = pointerStart.
 var Drawing = {
 	ribbons: [],
 	render: function(){
- 		context.fillStyle = "hsla(0,100%,100%,0.2)";
+		context.fillStyle = "hsla(0,100%,100%,0.2)";
 		context.fillRect(0, 0, canvas.width, canvas.height);
 		for(var i = 0; i < Drawing.ribbons.length; i += 1){
 			context.save();
@@ -139,8 +139,8 @@ function Ribbon(){
 		},
 		trim: function(){
 			if(closed || (path.length > 2)){
-	        	path.shift();
-	      	}
+				path.shift();
+			}
 		},
 		isDone: function(){
 			return closed && (path.length < 2);
