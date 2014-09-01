@@ -1,0 +1,1543 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"subs",
+				"subscribeTo"
+			],
+			[
+				"come",
+				"Component"
+			],
+			[
+				"Mkdir",
+				"MkdirAll	error ƒ"
+			],
+			[
+				"subj",
+				"SubjectKeyId	[]byte ν"
+			],
+			[
+				"Certif",
+				"Certificate	struct ʈ"
+			],
+			[
+				"auth",
+				"authorityPK	interface{} ν"
+			],
+			[
+				"aut",
+				"authorityPK	interface{} ν"
+			],
+			[
+				"ParsePK",
+				"ParsePKCS1PrivateKey	key *rsa.PrivateKey, err error ƒ"
+			],
+			[
+				"ParseC",
+				"ParseCertificate	*x509.Certificate, error ƒ"
+			],
+			[
+				"autho",
+				"authority	*x509.Certifacate ν"
+			],
+			[
+				"Int",
+				"Int64	*int64 ƒ"
+			],
+			[
+				"m",
+				"monitor	*time.Ticker ν"
+			],
+			[
+				"Out",
+				"Outbound	<-chan Message ν"
+			],
+			[
+				"Is",
+				"IsDomainAddress	bool ƒ"
+			],
+			[
+				"Signa",
+				"Signature	[]byte ν"
+			],
+			[
+				"Pub",
+				"PublicKeyAlgorithm	x509.PublicKeyAlgorithm ν"
+			],
+			[
+				"Publi",
+				"PublicKey	interface{} ν"
+			],
+			[
+				"cet",
+				"certauth	 package ρ"
+			],
+			[
+				"Dest",
+				"DestroyReply	struct ʈ"
+			],
+			[
+				"Reg",
+				"Register	error ƒ"
+			],
+			[
+				"Dial",
+				"DialHTTP	*rpc.Client, error ƒ"
+			],
+			[
+				"D",
+				"Decode	error ƒ"
+			],
+			[
+				"Decod",
+				"DecodeValue	error ƒ"
+			],
+			[
+				"Agg",
+				"AggregateId	[16]byte ʈ"
+			],
+			[
+				"Decoder",
+				"NewDecoder	*gob.Decoder ƒ"
+			],
+			[
+				"quer",
+				"queryViaInternal	[]string, error ƒ"
+			],
+			[
+				"queryVia",
+				"queryViaNameservers	[]*x509.Certificate, error ƒ"
+			],
+			[
+				"direct",
+				"directexchange_windows_amd64"
+			],
+			[
+				"T",
+				"Type	uint16 ν"
+			],
+			[
+				"UTF1",
+				"UTF16ToString	string ƒ"
+			],
+			[
+				"find",
+				"findEmailServerOld	string ƒ"
+			],
+			[
+				"P",
+				"Part	struct ʈ"
+			],
+			[
+				"New",
+				"NewEncoder	io.WriteCloser ƒ"
+			],
+			[
+				"f",
+				"Fprintf	n int, err error ƒ"
+			],
+			[
+				"Enc",
+				"Encode	n int ƒ"
+			],
+			[
+				"mul",
+				"multipartTokenize	[]*piece, error ƒ"
+			],
+			[
+				"Set",
+				"SetOutput	 ƒ"
+			],
+			[
+				"req",
+				"request	*CertificateRequest ν"
+			],
+			[
+				"Cer",
+				"CertificateRequestConfirmed	struct ʈ"
+			],
+			[
+				"Status",
+				"StatusConflict	 Ɩ"
+			],
+			[
+				"Write",
+				"WriteHeader	 ƒ"
+			],
+			[
+				"ser",
+				"Serial	*big.Int ν"
+			],
+			[
+				"CreateC",
+				"CreateCertificate	cert []byte, err error ƒ"
+			],
+			[
+				"Sub",
+				"Subject	pkix.Name ν"
+			],
+			[
+				"Parsse",
+				"ParseCertificateRequest	*x509.CertificateRequest, error ƒ"
+			],
+			[
+				"SHA",
+				"SHA512WithRSA	 Ɩ"
+			],
+			[
+				"Create",
+				"CreateCertificateRequest	csr []byte, err error ƒ"
+			],
+			[
+				"Ver",
+				"Verify	chains [][]*x509.Certificate, err error ƒ"
+			],
+			[
+				"Certifi",
+				"CertificateRequest	struct ʈ"
+			],
+			[
+				"N",
+				"NewServer	*rpc.Server ƒ"
+			],
+			[
+				"func",
+				"func main	func main {...} ʂ"
+			],
+			[
+				"Ne",
+				"NewTimer	*time.Timer ƒ"
+			],
+			[
+				"Up",
+				"updates	chan []byte ν"
+			],
+			[
+				"up",
+				"Update	<-chan []byte ν"
+			],
+			[
+				"FP",
+				"Fprintf	n int, err error ƒ"
+			],
+			[
+				"Killf",
+				"Killf	error ƒ"
+			],
+			[
+				"Mess",
+				"MessageTemplate	string ν"
+			],
+			[
+				"Parse",
+				"ParseName	string ν"
+			],
+			[
+				"Acce",
+				"AcceptShutdown	 Ɩ"
+			],
+			[
+				"Con",
+				"Config	struct ʈ"
+			],
+			[
+				"create",
+				"createEndpoint	error ƒ"
+			],
+			[
+				"endpo",
+				"endpointsdir	string ν"
+			],
+			[
+				"Decode",
+				"DecodeElement	error ƒ"
+			],
+			[
+				"Deco",
+				"NewDecoder	*xml.Decoder ƒ"
+			],
+			[
+				"Org",
+				"OrganizationalUnit"
+			],
+			[
+				"Enco",
+				"EncodeToString	string ƒ"
+			],
+			[
+				"Flags",
+				"LstdFlags	 Ɩ"
+			],
+			[
+				"Add",
+				"AddDate	time.Time ƒ"
+			],
+			[
+				"v",
+				"Vector	[3]float32 ʈ"
+			],
+			[
+				"t",
+				"ToLower	string ƒ"
+			],
+			[
+				"Par",
+				"ParseDuration	time.Duration, error ƒ"
+			],
+			[
+				"row",
+				"rowVisibilities"
+			],
+			[
+				"Run",
+				"RunTimeout	time.Duration ν"
+			],
+			[
+				"extra",
+				"ExtractHeadersTo	 ƒ"
+			],
+			[
+				"encryper",
+				"encrypter	Encrypter ν"
+			],
+			[
+				"C",
+				"Children	[]*Part ν"
+			],
+			[
+				"Dec",
+				"DecodeElement	error ƒ"
+			],
+			[
+				"Encode",
+				"EncodeElement	error ƒ"
+			],
+			[
+				"Marshal",
+				"MarshalIndent	[]byte, error ƒ"
+			],
+			[
+				"Mkdi",
+				"MkdirAll	error ƒ"
+			],
+			[
+				"Emil",
+				"EmailSent	struct ʈ"
+			],
+			[
+				"inter",
+				"intermediatesdir	string ν"
+			],
+			[
+				"anch",
+				"anchorsdir	string ν"
+			],
+			[
+				"Marsha",
+				"MarshalPKCS1PrivateKey	[]byte ƒ"
+			],
+			[
+				"keypai",
+				"keypairexists	bool ƒ"
+			],
+			[
+				"Encod",
+				"NewEncoder	*toml.Encoder ƒ"
+			],
+			[
+				"Pri",
+				"Print	 ƒ"
+			],
+			[
+				"Mkd",
+				"MkdirAll	error ƒ"
+			],
+			[
+				"rr",
+				"Rrtype	uint16 ν"
+			],
+			[
+				"Type",
+				"TypeOf	reflect.Type ƒ"
+			],
+			[
+				"asnSing",
+				"asnSignerInfo	struct ʈ"
+			],
+			[
+				"Sign",
+				"SignatureAlgorithm	int ʈ"
+			],
+			[
+				"Signature",
+				"CheckSignature	err error ƒ"
+			],
+			[
+				"Sig",
+				"SignedAttributes	[]Attribute ν"
+			],
+			[
+				"Pu",
+				"PublicKeyAlgorithm	x509.PublicKeyAlgorithm ν"
+			],
+			[
+				"S",
+				"SignatureAlgorithm	pkix.AlgorithmIdentifier ν"
+			],
+			[
+				"check",
+				"CheckSignatureFrom	err error ƒ"
+			],
+			[
+				"Issuer",
+				"RawIssuer	[]byte ν"
+			],
+			[
+				"Si",
+				"SignatureAlgorithm	pkix.AlgorithmIdentifier ν"
+			],
+			[
+				"print",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"Tick",
+				"Ticker	struct ʈ"
+			],
+			[
+				"TagObje",
+				"TagObjectIdentifier	 Ɩ"
+			],
+			[
+				"skip",
+				"skipunimplemented	 Ɩ"
+			],
+			[
+				"Raw",
+				"RawContent	[]byte ʈ"
+			],
+			[
+				"Att",
+				"AttributeTypeAndValue	struct ʈ"
+			],
+			[
+				"asng",
+				"asnSignerInfo	struct ʈ"
+			],
+			[
+				"Asn",
+				"ASN1RawValue	struct ʈ"
+			],
+			[
+				"marsh",
+				"marshalTagAndLength	err error ƒ"
+			],
+			[
+				"asn",
+				"asnDigestAlgorithms	*[]pkix.AlgorithmIdentifier ʈ"
+			],
+			[
+				"enc",
+				"encapContentType	asn1.ObjectIdentifier ν"
+			],
+			[
+				"parase",
+				"parseFieldParameters	ret fieldParameters ƒ"
+			],
+			[
+				"AsO",
+				"AsOctetString	ret []byte, err error ƒ"
+			],
+			[
+				"ASIn",
+				"AsInt64	ret int64, err error ƒ"
+			],
+			[
+				"AsTime",
+				"AsUTCTime	ret time.Time, err error ƒ"
+			],
+			[
+				"objec",
+				"objectIdentifierType	reflect.Type ν"
+			],
+			[
+				"expec",
+				"expectedClass	 ν"
+			],
+			[
+				"expe",
+				"expectedClass	 ν"
+			],
+			[
+				"Value",
+				"ValueOf	reflect.Value ƒ"
+			],
+			[
+				"Ex",
+				"ExContent_bin	Example ν"
+			],
+			[
+				"Findall",
+				"FindAllStringSubmatch	[][]string ƒ"
+			],
+			[
+				"init",
+				"initOffset	int ν"
+			],
+			[
+				"tag",
+				"tagOctetString	 Ɩ"
+			],
+			[
+				"Encry",
+				"EncryptionAlgorithm	EncryptionAlgorithm ν"
+			],
+			[
+				"Ori",
+				"OriginatorCRLs	[]*pkix.CertificateList ν"
+			],
+			[
+				"oidEn",
+				"oidEncryptionRC2_CBC	asn1.ObjectIdentifier ν"
+			],
+			[
+				"encryp",
+				"encryptionAlgorithmDetails	[]struct ν"
+			],
+			[
+				"Algo",
+				"SignatureAlgorithm	int ʈ"
+			],
+			[
+				"Rcode",
+				"RcodeNotAuth	 Ɩ"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Nimrod/Nimrod.sublime-build",
+	"command_palette":
+	{
+		"height": 127.0,
+		"selected_items":
+		[
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"orgmode",
+				"Set Syntax: orgmode"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"enab",
+				"Package Control: Enable Package"
+			],
+			[
+				"disabl",
+				"Package Control: Disable Package"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"go",
+				"Set Syntax: Go"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"javascr	",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"pascal",
+				"Set Syntax: Pascal"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"bookmarks",
+				"Bookmarks: Toggle"
+			],
+			[
+				"brow",
+				"GoSublime: Browse Packages"
+			],
+			[
+				"brows",
+				"Preferences: Browse Packages"
+			],
+			[
+				"gosubl",
+				"GoSublime: Browse Packages"
+			],
+			[
+				"gosu",
+				"GoSublime: Browse Declarations"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"upgr",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"Package Control: remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"syntgo",
+				"Set Syntax: Go"
+			],
+			[
+				"javascrip",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"syn go",
+				"Set Syntax: Go"
+			],
+			[
+				"html",
+				"Set Syntax: HTML5"
+			],
+			[
+				"javascip",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"javascript",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"clojure",
+				"Set Syntax: Clojure"
+			],
+			[
+				"fmt",
+				"GoSublime: Fmt the current file (without saving it)"
+			],
+			[
+				"subl fmt",
+				"GoSublime: Fmt the current file (without saving it)"
+			],
+			[
+				"sublime user",
+				"GoSublime: User Settings"
+			],
+			[
+				"upg",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"pascla",
+				"Set Syntax: Pascal"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"ruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"update",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"format",
+				"Format: Javascript"
+			],
+			[
+				"pla",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"asm",
+				"Set Syntax: ARM Assembly"
+			],
+			[
+				"assem",
+				"Set Syntax: Assembly x86 (NASM)"
+			],
+			[
+				"pyhton",
+				"SublimeREPL: Python"
+			],
+			[
+				"new",
+				"Tasks: New document"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"sa",
+				"Set Syntax: Assembly x86 (NASM)"
+			],
+			[
+				"isnta",
+				"Package Control: Install Package"
+			],
+			[
+				"set syntax:c",
+				"Set Syntax: C"
+			],
+			[
+				"wra",
+				"Word Wrap: Toggle"
+			],
+			[
+				"syntax: C",
+				"Set Syntax: C"
+			],
+			[
+				"remve",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			],
+			[
+				"c",
+				"Set Syntax: C++"
+			],
+			[
+				"gosub",
+				"GoSublime: Browse Packages"
+			],
+			[
+				"html5",
+				"Set Syntax: HTML5"
+			],
+			[
+				"upgrade",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"scala",
+				"Set Syntax: Scala"
+			],
+			[
+				"golang",
+				"Package Control: Enable Package"
+			],
+			[
+				"increm",
+				"Emmet: Increment Number by 1"
+			],
+			[
+				"tidy",
+				"TidyHTML"
+			],
+			[
+				"ini",
+				"Set Syntax: INI"
+			],
+			[
+				"disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"synt c++",
+				"Set Syntax: C++"
+			],
+			[
+				"julia",
+				"Set Syntax: Julia"
+			],
+			[
+				"juli",
+				"Set Syntax: Julia"
+			],
+			[
+				"javasci",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ena",
+				"Package Control: Enable Package"
+			],
+			[
+				"javsa",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"tern",
+				"TernJS: Reload"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"javs",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"jasv",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"packa re",
+				"Package Control: Remove Package"
+			],
+			[
+				"lineend",
+				"Line Ending to all views on window: Windows"
+			],
+			[
+				"control",
+				"Package Control: Enable Package"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"pasc",
+				"Set Syntax: Pascal"
+			],
+			[
+				"repl py",
+				"SublimeREPL: Python"
+			],
+			[
+				"perl",
+				"Set Syntax: Perl"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"types",
+				"Set Syntax: TypeScript"
+			],
+			[
+				"rename",
+				"TernJS: Rename variable"
+			],
+			[
+				"typescrip",
+				"Set Syntax: TypeScript"
+			],
+			[
+				"type",
+				"Set Syntax: TypeScript"
+			],
+			[
+				"javascr",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"mark",
+				"Set Syntax: Markdown"
+			],
+			[
+				"set syn has",
+				"Set Syntax: Haskell"
+			],
+			[
+				"package rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"haskel",
+				"Set Syntax: Haskell"
+			],
+			[
+				"hask",
+				"Set Syntax: Haskell"
+			],
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"proc",
+				"Set Syntax: Processing"
+			],
+			[
+				"batch",
+				"Set Syntax: Batch File"
+			],
+			[
+				"form",
+				"SublimeAStyleFormmatter: Format Current Selection"
+			],
+			[
+				"d",
+				"Set Syntax: D"
+			],
+			[
+				"Python",
+				"Set Syntax: Python"
+			],
+			[
+				"synt go",
+				"Set Syntax: Go"
+			],
+			[
+				"upgrad",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"upgra",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"cloju",
+				"Set Syntax: Clojure"
+			],
+			[
+				"bat",
+				"Set Syntax: Batch File"
+			],
+			[
+				"pas",
+				"Set Syntax: Pascal"
+			],
+			[
+				"prolo",
+				"Set Syntax: Prolog"
+			],
+			[
+				"prolog",
+				"Set Syntax: Prolog"
+			],
+			[
+				"dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"enal",
+				"Package Control: Enable Package"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"C++",
+				"Set Syntax: C++"
+			],
+			[
+				"syn c",
+				"Set Syntax: C"
+			],
+			[
+				"py",
+				"Set Syntax: Python"
+			],
+			[
+				"pyt",
+				"Set Syntax: Python"
+			],
+			[
+				"word",
+				"Word Wrap: Toggle"
+			],
+			[
+				"pacs",
+				"Set Syntax: Pascal"
+			],
+			[
+				"pasca",
+				"Set Syntax: Pascal"
+			],
+			[
+				"pyht",
+				"Set Syntax: Python"
+			],
+			[
+				"pyth",
+				"Set Syntax: Python"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 448.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/f/dev/projects/multi-design",
+		"/f/dev/projects/multi-design/ribbons"
+	],
+	"file_history":
+	[
+		"/f/dev/projects/multi-design/ribbons/rx/main.js",
+		"/f/dev/projects/multi-design/ribbons/ces/index.html",
+		"/f/dev/projects/multi-design/ribbons/rx/index.html",
+		"/F/dev/projects/multi-design/ribbons/rx/shim.js",
+		"/f/dev/projects/multi-design/ribbons/ces/shim.js",
+		"/f/dev/projects/multi-design/ribbons/ces/ces.js",
+		"/f/dev/projects/multi-design/ribbons/ces/main.js",
+		"/F/dev/projects/multi-design/ribbons/ces/shim.js",
+		"/F/dev/projects/multi-design/ribbons/ces/ces.js",
+		"/R/dev/rt_10.2.100/client/bin/mu2.bat",
+		"/F/downloads/internet/_home_egonelbr_tmp_stats.conf___default",
+		"/R/gopath/src/raintree/directexchange2/_build/local/example.bat",
+		"/R/gopath/src/raintree/directexchange2/Makefile",
+		"/R/gopath/src/raintree/directexchange2/util/certs.go",
+		"/R/gopath/src/raintree/directexchange2/cmd/directkeygen/main.go",
+		"/R/gopath/src/raintree/directexchange2/_build/local/keys/anchors/authority.pem",
+		"/R/gopath/src/raintree/directexchange2/smtp/smtpd.go",
+		"/R/gopath/src/raintree/directexchange2/smtp/envelope.go",
+		"/R/gopath/src/raintree/directexchange2/smtp/service.go",
+		"/R/gopath/src/raintree/directexchange2/node/smtp/poller.go",
+		"/R/gopath/src/raintree/directexchange2/util/stringset/stringset.go",
+		"/R/gopath/src/raintree/directexchange2/smtp/rpcclient.go",
+		"/R/gopath/src/raintree/directexchange2/cmd/directtrust/main.go",
+		"/R/x/rpctest.go",
+		"/r/gopath/src/raintree/directexchange/disk/disk.go",
+		"/R/gopath/src/raintree/directexchange2/node/endpoint.go",
+		"/R/gopath/src/raintree/directexchange2/node/disk/out.go",
+		"/R/gopath/src/raintree/directexchange2/node/disk/in.go",
+		"/R/gopath/src/raintree/directexchange2/node/disk/charset.go",
+		"/R/gopath/src/raintree/directexchange2/node/disk/store.go",
+		"/R/gopath/src/raintree/directexchange2/certauth/events.go",
+		"/R/gopath/src/raintree/directexchange2/certauth/endpoint/events.go",
+		"/R/gopath/src/raintree/directexchange2/event/uuid.go",
+		"/R/gopath/src/raintree/directexchange2/event/event.go",
+		"/R/gopath/src/raintree/directexchange2/cmd/directtrust/events.go",
+		"/R/gopath/src/raintree/directexchange2/node/node.go",
+		"/R/gopath/src/raintree/directexchange2/util/files.go",
+		"/R/gopath/src/raintree/directexchange2/node/certificates/certificates.go",
+		"/R/gopath/src/raintree/directexchange2/node/exchange/exchange.go",
+		"/r/gopath/src/raintree/directexchange/util/file.go",
+		"/R/gopath/src/raintree/directexchange2/node/trust/trustedpool.go",
+		"/R/gopath/src/raintree/directexchange2/util/tempfile.go",
+		"/R/gopath/src/raintree/directexchange2/node/exchange/receipt.go",
+		"/R/gopath/src/raintree/directexchange2/direct/imf/receipt.go",
+		"/R/gopath/src/raintree/directexchange2/direct/hcc/receipt.go",
+		"/R/gopath/src/raintree/directexchange2/discovery/dns.go",
+		"/R/gopath/src/raintree/directexchange2/node/services.go",
+		"/R/gopath/src/raintree/directexchange2/node/trust/load.go",
+		"/R/gopath/src/raintree/directexchange2/node/security/openssl.go",
+		"/R/gopath/src/raintree/directexchange2/exchange/exchange.go",
+		"/r/gopath/src/raintree/directexchange/exchange/service.go",
+		"/R/gopath/src/raintree/directexchange2/exchange/receipt.go",
+		"/r/gopath/src/raintree/directexchange/exchange/receipt.go",
+		"/R/gopath/src/raintree/directexchange2/exchange/email/headers.go",
+		"/R/gopath/src/raintree/directexchange2/trust/load.go",
+		"/R/gopath/src/raintree/directexchange2/mailer/mailer.go",
+		"/R/gopath/src/raintree/directexchange2/certificates/certificates.go",
+		"/R/gopath/src/raintree/directexchange2/util/loadcert.go",
+		"/R/gopath/src/raintree/directexchange2/node/trust.go",
+		"/R/gopath/src/raintree/directexchange2/security/openssl.go",
+		"/R/gopath/src/raintree/directexchange2/node/endpoint/endpoint.go",
+		"/R/gopath/src/raintree/directexchange2/node/domain.go",
+		"/R/gopath/src/raintree/directexchange2/exchange/email/receipt.go",
+		"/r/gopath/src/raintree/directexchange/security/keygen.go",
+		"/R/gopath/src/raintree/directexchange2/cmd/directtrust/views/endpoint/view.html",
+		"/R/gopath/src/raintree/directexchange2/cmd/directtrust/views/pending/view.html",
+		"/R/gopath/src/raintree/directexchange2/direct/imf/encode.go",
+		"/R/gopath/src/raintree/directexchange2/direct/imf/message.go",
+		"/R/gopath/src/raintree/directexchange2/direct/hcc/headers.go",
+		"/R/gopath/src/raintree/directexchange2/direct/imf/parse.go",
+		"/R/gopath/src/raintree/directexchange2/direct/hcc/parse_test.go",
+		"/R/gopath/src/raintree/directexchange2/direct/hcc/parse.go",
+		"/R/gopath/src/raintree/directexchange2/direct/hcc/message.go",
+		"/R/gopath/src/raintree/directexchange2/certauth/endpoint/endpoint.go",
+		"/R/gopath/src/raintree/directexchange2/certauth/certauth.go",
+		"/R/gopath/src/raintree/directexchange2/direct/hcc/encode.go",
+		"/R/gopath/src/raintree/directexchange2/cmd/directtrust/endpointlist.go",
+		"/R/gopath/src/raintree/directexchange2/cmd/directkeygen/generate_ca.go",
+		"/r/gopath/src/raintree/directexchange/README.md",
+		"/R/gopath/src/raintree/directexchange2/certauth/verify.go",
+		"/r/gopath/src/raintree/directexchange/security/monitor.go",
+		"/R/gopath/src/raintree/directexchange2/Technical.org",
+		"/r/gopath/src/raintree/directexchange/NOTES.todo",
+		"/R/gopath/src/raintree/directexchange2/Requirements.org",
+		"/R/gopath/src/raintree/directexchange2/event/sqlite-diskstore/store.go",
+		"/R/gopath/src/raintree/directexchange2/smtp/test_smtp.go",
+		"/R/gopath/src/raintree/directexchange2/smtp/rpcserver.go",
+		"/R/gopath/src/raintree/directexchange2/smtp/test_rpc.go",
+		"/R/gopath/src/raintree/directexchange2/_build/local/directsmtp.toml",
+		"/R/gopath/src/raintree/directexchange2/cmd/directsmtp/service_windows.go",
+		"/R/gopath/src/raintree/directexchange2/cmd/directsmtp/main.go",
+		"/R/gopath/src/raintree/directexchange2/cmd/directtrust/data.go",
+		"/R/gopath/src/raintree/directexchange2/direct/address.go",
+		"/R/dev/mist/index.html",
+		"/R/gopath/src/raintree/directexchange2/cmd/directsmtp/info.go",
+		"/R/gopath/src/raintree/directexchange2/cmd/directnode/main.go",
+		"/R/gopath/src/raintree/directexchange2/event/root.go",
+		"/R/gopath/src/raintree/directexchange2/event/sqlite-diskstore/store_test.go",
+		"/R/gopath/src/raintree/directexchange2/event/memstore/store_test.go",
+		"/R/gopath/src/raintree/directexchange2/event/diskstore/store_test.go",
+		"/R/gopath/src/raintree/directexchange2/event/diskstore/store.go",
+		"/R/gopath/src/raintree/directexchange2/cmd/directtrust/pendingrequests.go",
+		"/R/gopath/src/raintree/directexchange2/event/memstore/store.go",
+		"/R/gopath/src/raintree/directexchange2/event/membus/bus_test.go",
+		"/R/gopath/src/raintree/directexchange2/event/membus/bus.go",
+		"/R/gopath/src/raintree/directexchange2/cmd/directtrust/demo.go",
+		"/R/gopath/src/raintree/directexchange2/event/membus_test.go",
+		"/R/gopath/src/raintree/directexchange2/event/membus.go",
+		"/R/gopath/src/raintree/directexchange2/certauth/endpoint/repository.go",
+		"/R/gopath/src/raintree/directexchange2/certauth/issuer.go",
+		"/R/gopath/src/raintree/directexchange2/certauth/addresslist.go",
+		"/R/gopath/src/raintree/directexchange2/trust/trustedpool.go",
+		"/R/x/perf.go",
+		"/r/gopath/src/raintree/directexchange/dns/service.go",
+		"/r/gopath/src/raintree/directexchange/discovery/service.go",
+		"/r/gopath/src/raintree/directexchange/discovery/certs_dns.go",
+		"/R/sandbox/prj/Sketching/index.html",
+		"/r/gopath/src/raintree/directexchange/smtp/service.go",
+		"/R/x/parallel/lookupcert.go",
+		"/r/gopath/src/raintree/directexchange/discovery/certs_ldap.go",
+		"/R/gopath/src/raintree/directexchange/smtp/servers.go",
+		"/r/gopath/src/raintree/directexchange/security/smime.go",
+		"/R/rtw/directexchange.indirect/security/temp/recv_d1@domain1.demo.direct-test.com_iGT9EK5mRMGKpnGDf13bBbVpRYfEznsZ",
+		"/R/rtw/directexchange.indirect/security/temp/recv_d5@domain1.demo.direct-test.com_GqRzsDgfP9PVw2p0kkh4FLmGhgmtY18i",
+		"/C/Programs/Go/.hg/hgrc",
+		"/r/gopath/src/raintree/directexchange/util/nameserverhack.go",
+		"/R/x/parallel/looka.go",
+		"/R/gopath/src/raintree/directexchange/build.bat"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"r:\\gopath\\src\\raintree\\directexchange",
+			"r:\\dev\\directexchange\\src\\github.com\\miekg\\dns",
+			"r:\\dev\\rt_dev\\direct\\src\\github.com\\miekg\\dns",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"this.",
+			"trails",
+			"trail",
+			"Trail",
+			"trails",
+			"trail",
+			"scattering",
+			"trails",
+			"Trail",
+			"Path",
+			"componentMap",
+			"Engine.em.cmap",
+			"cmap",
+			"all",
+			"render",
+			"id",
+			"engine",
+			"Engine",
+			"engine",
+			"Engine",
+			"engine",
+			"Engine",
+			"engine",
+			"Engine",
+			"engine",
+			"Engine",
+			"engine",
+			"this",
+			"this.touch",
+			"this.touchDown",
+			"mouseDown",
+			"SYS",
+			"components",
+			"new",
+			"Ribbon",
+			"this.",
+			"RibbonPath",
+			"this.Engine",
+			"console.log",
+			"system",
+			"systems",
+			"this.list",
+			"foreach",
+			"keys",
+			"foreach",
+			"methods",
+			"cmap",
+			"c",
+			"comp",
+			"toml",
+			"aski",
+			"string",
+			"[SEC] ",
+			"signerCert",
+			"certificate authority",
+			"certificate",
+			"generateEndpoint",
+			"generateCA",
+			"msg",
+			"addr",
+			"log",
+			"out.m",
+			"isnew",
+			"config",
+			"poll",
+			"message",
+			"Message",
+			"message",
+			"filename",
+			"Outbound",
+			"s",
+			"Store",
+			"msg",
+			"File",
+			"endpoint",
+			"Endpoint",
+			"endpoint",
+			"withouter",
+			"address",
+			"Address",
+			"Handler",
+			"headers",
+			"receipt",
+			"withouter",
+			"decrypted",
+			"message",
+			"decrypted",
+			"SaveCert",
+			"InternetLookup",
+			"cachedir",
+			"tempdir",
+			"domain",
+			"Domain",
+			"domain",
+			"domains",
+			"d",
+			"Domain",
+			"domain",
+			"Domain",
+			"domain",
+			"Domain",
+			"domain",
+			"Domain",
+			"DomainState",
+			"DomainConfig",
+			"custom",
+			"asArray",
+			"toarr",
+			"SignRequest",
+			"CNameAddress",
+			"event",
+			"p",
+			"initIssuer",
+			"Node",
+			"direct.customer.com",
+			"customerdomain",
+			"<img",
+			"Download",
+			"srv.inbox",
+			"srv.server",
+			"Client",
+			"client",
+			"SMTPInbox",
+			"SMTPAddr",
+			"Halt",
+			"e",
+			"r",
+			"RPC"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"    ",
+			",\\n",
+			",",
+			"",
+			"0x0\\1,",
+			"",
+			"  ",
+			"\\\\.",
+			"\\.",
+			"|",
+			"",
+			" is $1",
+			"  ",
+			"fasd",
+			"",
+			"[$1]",
+			"if Active",
+			"logServerFunc.Trace('",
+			"",
+			"DoLog(AMessage, $2, _RetAddr, [], '')",
+			"name",
+			"key",
+			"},\\n",
+			"\"",
+			"=*\\n",
+			"=*",
+			"",
+			"\"$1\",",
+			"\"$1\"",
+			"$1",
+			"[...]",
+			",",
+			"",
+			"},\\n",
+			"",
+			":",
+			"CheckStatus($1, lTransferStatus);",
+			"CheckEquals($2, $1);",
+			"CheckEquals($2,$1);",
+			"",
+			", ",
+			";",
+			"F",
+			"T",
+			"$1",
+			"\\n",
+			"||",
+			",\\n",
+			"\\n",
+			"Test($1);",
+			"$1",
+			"___",
+			"x",
+			"StrAttr($1, '$2')",
+			"",
+			"xxx",
+			" ",
+			"\\n",
+			"",
+			"\\n",
+			"",
+			",",
+			"",
+			" ",
+			"",
+			" ",
+			"",
+			" ",
+			"\\n",
+			"",
+			"\\n",
+			"",
+			"\",\"",
+			"",
+			"$2",
+			"",
+			"$1",
+			"",
+			"\\n$0",
+			"\\n\\0",
+			"",
+			" ",
+			"",
+			"timeout()",
+			"\\1",
+			", ",
+			",",
+			"gChargeRec",
+			"",
+			"|",
+			",",
+			"\\t"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "f:\\dev\\projects\\multi-design"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.9o://C:\\Program Files\\Sublime Text 3":
+	{
+		"height": 124.0
+	},
+	"output.GoSublime-main-output":
+	{
+		"height": 124.0
+	},
+	"output.GoSublime-source-output":
+	{
+		"height": 124.0
+	},
+	"output.GsComplete.completion-hint-output":
+	{
+		"height": 124.0
+	},
+	"output.exec":
+	{
+		"height": 145.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.haskell_sublime_load":
+	{
+		"height": 142.0
+	},
+	"project": "",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 219.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
