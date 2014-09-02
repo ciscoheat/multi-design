@@ -1,5 +1,7 @@
 function Ribbon() {
 	return {
+		alive: true,
+
 		RibbonPath: RibbonPath(),
 		RibbonStyle: {
 			color: "hsla(" + ((Math.random()*360)|0) + ", 60%, 60%, 1)",
@@ -18,7 +20,7 @@ function RibbonPath(){
 	};
 	
 	var points = [],
-			closed = false;
+		closed = false;
 
 	return {
 		get closed() { return closed },
@@ -61,6 +63,11 @@ Engine.update = function(){
 	var dt = 16;
 	Engine.time += dt;
 	Engine.systems("update", dt);
+	Engine.em.forEach(function(en){
+		if(!en.alive){
+			Engine.em.remove(en);
+		}
+	});
 }
 
 Engine.render = function(){
@@ -80,138 +87,149 @@ Engine.run = function(){
 	startRender(Engine.render);
 }
 
+function Drawing(Engine){
+	var open = {};
+	return {
+		start: function(id, p){
+			if(open[id] != null){
+				open[id].close();
+			}
+			
+			var ribbon = Ribbon();
+			Engine.em.add(ribbon);
+			
+			open[id] = ribbon.RibbonPath;
+			ribbon.RibbonPath.add(p);
+		},
+		line: function(id, p){
+			if(open[id] != null){
+				open[id].add(p);
+			}
+		},
+		close: function(id){
+			if(open[id] != null){
+				open[id].close();
+				delete open[id];
+			}
+		}
+	};
+}
+
 // draws the ribbons on the screen
-var Drawing = Engine.sys.Drawing = {
-	open: {},
-	start: function(id, p){
-		if(Drawing.open[id] != null){
-			Drawing.open[id].close();
-		}
-		
-		var ribbon = Ribbon();
-		Engine.em.add(ribbon);
-		
-		Drawing.open[id] = ribbon.RibbonPath;
-		ribbon.RibbonPath.add(p);
-	},
-	line: function(id, p){
-		if(Drawing.open[id] != null){
-			Drawing.open[id].add(p);
-		}
-	},
-	close: function(id){
-		if(Drawing.open[id] != null){
-			Drawing.open[id].close();
-			delete Drawing.open[id];
-		}
-	}
-};
+Engine.sys.Drawing = Drawing(Engine);
 
 // handles mouse input
-var Mouse = Engine.sys.Mouse = {
-	init: function(){
-		document.addEventListener("mousedown", Mouse.down);
-		document.addEventListener("mousemove", Mouse.move);
-		document.addEventListener("mouseup", Mouse.up);
-	},
-	down: function(ev){
-		Drawing.start("mouse", canvas.positionOf(ev));
-		ev.preventDefault();
-	},
-	move: function(ev){
-		Drawing.line("mouse", canvas.positionOf(ev));
-	},
-	up: function(ev){
-		Drawing.close("mouse");
-	}
-};
+function Mouse(Engine){
+	// needs sys.Drawing
+	return {
+		init: function(){
+			document.addEventListener("mousedown", function(ev){
+				Engine.sys.Drawing.start("mouse", canvas.positionOf(ev));
+				ev.preventDefault();
+			});
+			document.addEventListener("mousemove", function(ev){
+				Engine.sys.Drawing.line("mouse", canvas.positionOf(ev));
+				ev.preventDefault();
+			});
+			document.addEventListener("mouseup", function(ev){
+				Engine.sys.Drawing.close("mouse");
+				ev.preventDefault();
+			});
+		}
+	};
+}
+Engine.sys.Mouse = Mouse(Engine);
 
 // handles touch input
-var Touching = Engine.sys.Touching = {
-	init: function(){
-		document.addEventListener("touchstart", Touching.down);
-		document.addEventListener("touchmove", Touching.move);
-		document.addEventListener("touchend", Touching.end);
-		document.addEventListener("touchleave", Touching.end);
-		document.addEventListener("touchcancel", Touching.end);
-	},
-	down: function(ev){
-		ev.changedTouches.map(function(touch){
-			Drawing.start(touch.identifier, canvas.positionOf(touch));
-		})
-		ev.preventDefault();
-	},
-	end: function(ev){
-		ev.changedTouches.map(function(touch){
-			Drawing.close(touch.identifier);
-		})
-		ev.preventDefault();
-	},
-	move: function(ev){
-		ev.changedTouches.map(function(touch){
-			Drawing.line(touch.identifier, canvas.positionOf(touch));
-		})
-		ev.preventDefault();
-	}
-};
+function Touching(Engine){
+	// needs sys.Drawing
+	return {
+		init: function(){
+			document.addEventListener("touchstart", function(ev){
+				ev.changedTouches.map(function(touch){
+					Engine.sys.Drawing.start(touch.identifier, canvas.positionOf(touch));
+				})
+				ev.preventDefault();
+			});
+			document.addEventListener("touchmove", function(ev){
+				ev.changedTouches.map(function(touch){
+					Engine.sys.Drawing.line(touch.identifier, canvas.positionOf(touch));
+				})
+				ev.preventDefault();
+			});
+
+			var end = function(ev){
+				ev.changedTouches.map(function(touch){
+					Engine.sys.Drawing.close(touch.identifier);
+				})
+				ev.preventDefault();
+			};
+			document.addEventListener("touchend", end);
+			document.addEventListener("touchleave", end);
+			document.addEventListener("touchcancel", end);
+		}
+	};
+}
+Engine.sys.Touching = Touching(Engine);
 
 // renders the scene
-Engine.sys.Rendering = {
-	render: function(context){
-		Engine.where(function(RibbonPath, RibbonStyle){
-			var path = RibbonPath.points;
-			if(path.length < 1)
-				return;
-			context.strokeStyle = RibbonStyle.color;
-			context.lineWidth = RibbonStyle.width;
-			context.beginPath();
-			context.moveTo(path[0].x, path[0].y);
-			for(var i = 1; i < path.length - 1; i += 1){
-				var p = path[i];
-				context.lineTo(p.x, p.y);
-			}
-			context.stroke();
-		});
-	}
-};
+function Rendering(Engine){
+	return {
+		render: function(context){
+			Engine.where(function(RibbonPath, RibbonStyle){
+				var path = RibbonPath.points;
+				if(path.length < 1)
+					return;
+				context.strokeStyle = RibbonStyle.color;
+				context.lineWidth = RibbonStyle.width;
+				context.beginPath();
+				context.moveTo(path[0].x, path[0].y);
+				for(var i = 1; i < path.length - 1; i += 1){
+					var p = path[i];
+					context.lineTo(p.x, p.y);
+				}
+				context.stroke();
+			});
+		}
+	};
+}
+Engine.sys.Rendering = Rendering(Engine);
 
 // trims the ribbons
-Engine.sys.Trimming = {
-	update: function(dt){
-		Engine.where(function(RibbonPath, Trimming){
-			Trimming.next -= dt;
-			while(Trimming.next < 0){
-				if(RibbonPath.closed || (RibbonPath.points.length > 3)){
-					RibbonPath.points.shift();
+function Trimming(Engine){
+	return {
+		update: function(dt){
+			Engine.where(function(RibbonPath, Trimming){
+				Trimming.next -= dt;
+				while(Trimming.next < 0){
+					if(RibbonPath.closed || (RibbonPath.points.length > 3)){
+						RibbonPath.points.shift();
+					}
+					Trimming.next += Trimming.interval;
 				}
-				Trimming.next += Trimming.interval;
-			}
-		});
-	}
-};
+				if(RibbonPath.closed && RibbonPath.points.length == 0){
+					this.alive = false;
+				}
+			});
+		}
+	};
+}
+Engine.sys.Trimming = Trimming(Engine);
 
 // moves the ribbon path
-Engine.sys.Jittering = {
-	update: function(dt){
-		Engine.where(function(RibbonPath){
-			var path = RibbonPath.points;
-			for(var i = 0; i < path.length; i += 1){
-				path[i].x += Math.random()*2 - 1;
-				path[i].y += Math.random()*2 - 1;
-			}
-		});
-	}
-};
-
-// removes completely trimmed ribbons
-Engine.sys.PathCleanup = {
-	update: function(dt){
-		Engine.where(function(RibbonPath){
-			if(RibbonPath.closed && (RibbonPath.points.length == 0)) {
-				Engine.em.remove(this);
-			}
-		});
-	}
-};
+function Jittering(Engine){
+	return {
+		update: function(dt){
+			Engine.where(function(RibbonPath){
+				var path = RibbonPath.points;
+				for(var i = 0; i < path.length; i += 1){
+					path[i].x += Math.random()*2 - 1;
+					path[i].y += Math.random()*2 - 1;
+				}
+			});
+		}
+	};
+}
+Engine.sys.Jittering = Jittering(Engine);
 
 Engine.run();

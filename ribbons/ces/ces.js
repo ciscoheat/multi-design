@@ -24,7 +24,7 @@ function Entities(){
 	var list = {};
 
 	return {
-		get list(){ list },
+		get list(){ return list; },
 
 		byId: function(id){ return list[id]; },
 		add: function(en){
@@ -38,12 +38,16 @@ function Entities(){
 		removeById: function(id){
 			delete list[id];
 		},
+		forEach: function(fn){
+			forEach(list, function(en){
+				fn(en);
+			});
+		},
 		where: function(fn){
 			if(fn.__arguments == null){
 				fn.__arguments = argumentsOf(fn);
 			}
 			var args = fn.__arguments;
-
 			forEach(list, function(en){
 				var cs = [];
 				for(var i = 0; i < args.length; i += 1){
