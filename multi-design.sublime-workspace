@@ -1036,17 +1036,23 @@
 	"expanded_folders":
 	[
 		"/f/dev/projects/multi-design",
-		"/f/dev/projects/multi-design/ribbons"
+		"/f/dev/projects/multi-design/ribbons",
+		"/f/dev/projects/multi-design/ribbons/ces",
+		"/f/dev/projects/multi-design/ribbons/dci",
+		"/f/dev/projects/multi-design/ribbons/rx"
 	],
 	"file_history":
 	[
+		"/f/dev/projects/multi-design/ribbons/dci/main.js",
 		"/f/dev/projects/multi-design/ribbons/rx/main.js",
+		"/f/dev/projects/multi-design/ribbons/dci/index.html",
+		"/f/dev/projects/multi-design/ribbons/ces/main.js",
+		"/f/dev/projects/multi-design/ribbons/ces/ces.js",
+		"/f/dev/projects/multi-design/ribbons/rx/shim.js",
 		"/f/dev/projects/multi-design/ribbons/ces/index.html",
 		"/f/dev/projects/multi-design/ribbons/rx/index.html",
 		"/F/dev/projects/multi-design/ribbons/rx/shim.js",
 		"/f/dev/projects/multi-design/ribbons/ces/shim.js",
-		"/f/dev/projects/multi-design/ribbons/ces/ces.js",
-		"/f/dev/projects/multi-design/ribbons/ces/main.js",
 		"/F/dev/projects/multi-design/ribbons/ces/shim.js",
 		"/F/dev/projects/multi-design/ribbons/ces/ces.js",
 		"/R/dev/rt_10.2.100/client/bin/mu2.bat",
@@ -1164,14 +1170,11 @@
 		"/r/gopath/src/raintree/directexchange/security/smime.go",
 		"/R/rtw/directexchange.indirect/security/temp/recv_d1@domain1.demo.direct-test.com_iGT9EK5mRMGKpnGDf13bBbVpRYfEznsZ",
 		"/R/rtw/directexchange.indirect/security/temp/recv_d5@domain1.demo.direct-test.com_GqRzsDgfP9PVw2p0kkh4FLmGhgmtY18i",
-		"/C/Programs/Go/.hg/hgrc",
-		"/r/gopath/src/raintree/directexchange/util/nameserverhack.go",
-		"/R/x/parallel/looka.go",
-		"/R/gopath/src/raintree/directexchange/build.bat"
+		"/C/Programs/Go/.hg/hgrc"
 	],
 	"find":
 	{
-		"height": 36.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -1189,6 +1192,28 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"line",
+			"Line",
+			"line",
+			"Line",
+			"line",
+			"extend",
+			"renderTo",
+			"when",
+			"timeout",
+			"line.closed",
+			"jitter",
+			"joitt",
+			"path",
+			"Ribbon",
+			"e",
+			"Engine.",
+			"Drawing",
+			"drawing()",
+			"Engine.sys.Drawing",
+			"Drawing",
+			"closed",
+			"this",
 			"this.",
 			"trails",
 			"trail",
@@ -1294,29 +1319,7 @@
 			"Domain",
 			"DomainState",
 			"DomainConfig",
-			"custom",
-			"asArray",
-			"toarr",
-			"SignRequest",
-			"CNameAddress",
-			"event",
-			"p",
-			"initIssuer",
-			"Node",
-			"direct.customer.com",
-			"customerdomain",
-			"<img",
-			"Download",
-			"srv.inbox",
-			"srv.server",
-			"Client",
-			"client",
-			"SMTPInbox",
-			"SMTPAddr",
-			"Halt",
-			"e",
-			"r",
-			"RPC"
+			"custom"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1436,6 +1439,11 @@
 			"sheets":
 			[
 			]
+		},
+		{
+			"sheets":
+			[
+			]
 		}
 	],
 	"incremental_find":
@@ -1455,11 +1463,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
