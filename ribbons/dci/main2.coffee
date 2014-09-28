@@ -1,7 +1,8 @@
-Drawing = (input, canvas, context) ->
+##### Drawing #####
+
+Drawing = (canvas, context) ->
 	##### Context state #####
 
-	open = {}
 	ribbons = []
 
 	##### System Operations #####
@@ -18,7 +19,6 @@ Drawing = (input, canvas, context) ->
 			# background fade
 			context.fillStyle = "hsla(0,100%,100%,0.2)"
 			context.fillRect 0, 0, canvas.width, canvas.height
-
 			ribbons.draw()
 
 	canvas = extended canvas,
@@ -27,11 +27,21 @@ Drawing = (input, canvas, context) ->
 			y: ev.pageY - canvas.offsetTop
 
 	ribbons = extended ribbons,
-		add: (item) ->
-			ribbons.push item
+		# Find all ribbons with id
+		withId: (id) ->
+			ribbons.filter((r) -> r.id() is id)
 
-		remove: (item) ->
-			i = ribbons.indexOf item
+		add: (id, pos) ->
+			for ribbon in ribbons.withId id
+				ribbon.close() 
+
+			ribbon = Ribbon context, id
+			ribbon.extend pos
+			ribbons.push ribbon
+
+		remove: (ribbon) ->
+			ribbon.close()
+			i = ribbons.indexOf ribbon			
 			ribbons.splice i, 1 if i >= 0
 
 		draw: ->
@@ -49,77 +59,87 @@ Drawing = (input, canvas, context) ->
 			ribbons.map (ribbon) -> 
 				ribbon.jitter()
 
-	##### Initialization #####
-
-	input.when
-		down: (id, ev) ->
-			open[id].close() if open[id]?
-			rib = Ribbon context
-			rib.extend canvas.position ev
-			open[id] = rib
-			ribbons.add rib
-
-		move: (id, ev) ->
-			rib = open[id]
-			rib.extend canvas.position ev if rib
-
-		up: (id, ev) ->
-			if open[id]
-				open[id].close()
-				delete open[id]
-
 	##### Public API #####
 
-	ribbons: ribbons
 	startRender: startRender
 
-# A ribbon
-Ribbon = (context) ->
-	rib = extended [],
+	addRibbon: (id, ev) -> 
+		ribbons.add id, canvas.position ev
+
+	extendRibbon: (id, ev) ->
+		for ribbon in ribbons.withId id
+			ribbon.extend canvas.position ev
+
+	closeRibbon: (id) ->
+		for ribbon in ribbons.withId id
+			ribbon.close()
+
+##### Ribbon #####
+
+Ribbon = (context, id) ->
+	self = extended [],
+
+		##### Context state #####
+
+		closed: false
 		color: randomColor()
 		width: 4
-		closed: false
+
+		##### Public API #####
+
+		id: -> id
 
 		extend: (p) ->
-			return rib.push p if rib.length is 0
-			last = rib[rib.length - 1]
-			rib.push p if manhattan(last, p) > 10
+			return if self.closed
+			return self.push p if self.length is 0
+
+			last = self[self.length - 1]
+			self.push p if manhattan(last, p) > 10
 
 		close: ->
-			rib.closed = true
+			self.closed = true
 
 		isDone: ->
-			rib.closed and rib.length < 3
+			self.closed and self.length < 3
 
 		jitter: ->
-			rib.map (p) ->
+			self.map (p) ->
 				p.x += Math.random() * 2 - 1
 				p.y += Math.random() * 2 - 1
 
 		trim: ->
-			rib.shift() if rib.closed or (rib.length > 2)
+			self.shift() if self.closed or (self.length > 2)
 
 		draw: ->
-			context.strokeStyle = rib.color
-			context.lineWidth = rib.width
+			context.strokeStyle = self.color
+			context.lineWidth = self.width
 
 			context.beginPath()
-			context.moveTo rib[0].x, rib[0].y
+			context.moveTo self[0].x, self[0].y
 
 			i = 1
-			while i < rib.length
-				context.lineTo rib[i].x, rib[i].y
+			while i < self.length
+				context.lineTo self[i].x, self[i].y
 				i += 1
 
 			context.stroke()
 
-##### Input #####
+##### Inputs handling #####
 
 # composits multiple inputs
-Inputs = (inputs) ->
-	when: (events) ->
-		inputs.map (input) ->
-			input.when events
+Inputs = (inputs, drawing) ->
+	inputs = extended inputs,
+		when: (events) ->
+			inputs.map (input) ->
+				input.listenTo events
+
+	startTracking: ->
+		inputs.when
+			down: (id, ev) -> drawing.addRibbon id, ev
+			move: (id, ev) -> drawing.extendRibbon id, ev
+			up: (id, ev) -> drawing.closeRibbon id
+
+##### Specific input #####
 
 # handles "down", "move", "up" events
 Mouse = (element) ->
@@ -129,7 +149,7 @@ Mouse = (element) ->
 		fn = bindings[action]
 		fn and fn("mouse", ev)
 
-	when: (events, fn) ->
+	listenTo: (events) ->
 		bindings = events
 
 # handles "down", "move", "up" events
@@ -147,7 +167,7 @@ Touch = (element) ->
 			fn = bindings[translate[action]]
 			fn and fn(touch.identifier, ev)
 
-	when: (events) ->
+	listenTo: (events) ->
 		bindings = events
 
 ##### Utilities #####
@@ -172,13 +192,11 @@ extended = (object, extension) ->
 
 ##### Setup and start Drawing #####
 
-inputs = Inputs [
-	Mouse document
-	Touch document
-]
-
 canvas = document.getElementById "ribbons"
 context = canvas.getContext "2d"
-drawing = Drawing inputs, canvas, context
+
+drawing = Drawing canvas, context
+inputs = Inputs [Mouse canvas, Touch canvas], drawing
 
 drawing.startRender()
+inputs.startTracking()
