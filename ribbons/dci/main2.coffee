@@ -9,11 +9,7 @@ Drawing = (input, canvas, context) ->
 	startRender = ->
 		window.setInterval ribbons.trim, 30
 		window.setInterval ribbons.jitter, 10
-
-		cb = ->
-			context.fillBackground()
-			window.requestAnimationFrame cb
-		cb()
+		window.requestAnimationFrame context.fillBackground
 
 	##### RoleMethods #####
 
@@ -39,9 +35,10 @@ Drawing = (input, canvas, context) ->
 			ribbons.splice i, 1 if i >= 0
 
 		draw: ->
-			context.save()
+			#context.save()
 			ribbons.map (ribbon) ->	ribbon.draw()
-			context.restore()
+			#context.restore()
+			window.requestAnimationFrame context.fillBackground
 
 		trim: ->
 			ribbons.map (ribbon) ->
@@ -52,22 +49,26 @@ Drawing = (input, canvas, context) ->
 			ribbons.map (ribbon) -> 
 				ribbon.jitter()
 
+	##### Initialization #####
+
 	input.when
 		down: (id, ev) ->
 			open[id].close() if open[id]?
 			rib = Ribbon context
-			rib.extend canvas.position(ev)
+			rib.extend canvas.position ev
 			open[id] = rib
 			ribbons.add rib
 
 		move: (id, ev) ->
 			rib = open[id]
-			rib and rib.extend(canvas.position(ev))
+			rib.extend canvas.position ev if rib
 
 		up: (id, ev) ->
 			if open[id]
 				open[id].close()
 				delete open[id]
+
+	##### Public API #####
 
 	ribbons: ribbons
 	startRender: startRender
@@ -112,6 +113,8 @@ Ribbon = (context) ->
 
 			context.stroke()
 
+##### Input #####
+
 # composits multiple inputs
 Inputs = (inputs) ->
 	when: (events) ->
@@ -147,7 +150,8 @@ Touch = (element) ->
 	when: (events) ->
 		bindings = events
 
-# other utilities
+##### Utilities #####
+
 randomColor = ->
 	"hsla(" + ((Math.random() * 360) | 0) + ", 60%, 60%, 1)"
 
@@ -166,10 +170,12 @@ extended = (object, extension) ->
 		object[name] = extension[name]
 	object
 
-inputs = Inputs([
+##### Setup and start Drawing #####
+
+inputs = Inputs [
 	Mouse document
 	Touch document
-])
+]
 
 canvas = document.getElementById "ribbons"
 context = canvas.getContext "2d"
