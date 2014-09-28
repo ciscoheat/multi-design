@@ -77,30 +77,30 @@ Drawing = (canvas, context) ->
 ##### Ribbon #####
 
 Ribbon = (context, id) ->
+
+	##### Context state #####
+
+	closed = false
+	color = randomColor()
+	width = 4
+
 	self = extended [],
-
-		##### Context state #####
-
-		closed: false
-		color: randomColor()
-		width: 4
 
 		##### Public API #####
 
 		id: -> id
+		isClosed: -> closed
+		close: -> closed = true
 
 		extend: (p) ->
-			return if self.closed
+			return if self.isClosed()
 			return self.push p if self.length is 0
 
 			last = self[self.length - 1]
 			self.push p if manhattan(last, p) > 10
 
-		close: ->
-			self.closed = true
-
 		isDone: ->
-			self.closed and self.length < 3
+			self.isClosed() and self.length < 3
 
 		jitter: ->
 			self.map (p) ->
@@ -108,11 +108,11 @@ Ribbon = (context, id) ->
 				p.y += Math.random() * 2 - 1
 
 		trim: ->
-			self.shift() if self.closed or (self.length > 2)
+			self.shift() if self.isClosed() or (self.length > 2)
 
 		draw: ->
-			context.strokeStyle = self.color
-			context.lineWidth = self.width
+			context.strokeStyle = color
+			context.lineWidth = width
 
 			context.beginPath()
 			context.moveTo self[0].x, self[0].y
