@@ -1,210 +1,266 @@
-function Drawing(input, canvas, context){
-	var ribbons = extended([], {
-		add: function(item){
-			ribbons.push(item);
-		},
-		remove: function(item){
-			var i = ribbons.indexOf(item);
-			if(i >= 0) ribbons.splice(i, 1);
-		}
-	});
-	
-	var open = {};
-	input.when({
-		down: function(id, ev){
-			if(open[id] != null){
-				open[id].close();
-			}
-			var rib = Ribbon(Line())
-			rib.extend(position(ev));
-			open[id] = rib;
-			ribbons.add(rib);
-		},
-		move: function(id, ev){
-			var rib = open[id];
-			rib && rib.extend(position(ev));
-		},
-		up: function(id, ev){
-			if(open[id]){
-				open[id].close();
-				delete open[id];
-			}
-		}
-	});
+(function() {
+  var Drawing, Inputs, Mouse, Ribbon, Touch, canvas, context, drawing, extended, inputs, manhattan, randomColor, whenEvent;
 
-	function draw(){
-		// background fade
-		context.fillStyle = "hsla(0,100%,100%,0.2)";
-		context.fillRect(0, 0, canvas.width, canvas.height);
-		// render ribbons
-		ribbons.map(function(ribbon){
-			context.save();
-			ribbon.draw();
-			context.restore();
-		})
-	}
+  Drawing = function(canvas, context) {
+    var ribbons, startRender;
+    ribbons = [];
+    startRender = function() {
+      window.setInterval(ribbons.trim, 30);
+      window.setInterval(ribbons.jitter, 10);
+      return window.requestAnimationFrame(context.fillBackground);
+    };
+    context = extended(context, {
+      fillBackground: function() {
+        context.fillStyle = "hsla(0,100%,100%,0.2)";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        return ribbons.draw();
+      }
+    });
+    canvas = extended(canvas, {
+      position: function(ev) {
+        return {
+          x: ev.pageX - canvas.offsetLeft,
+          y: ev.pageY - canvas.offsetTop
+        };
+      }
+    });
+    ribbons = extended(ribbons, {
+      withId: function(id) {
+        return ribbons.filter(function(r) {
+          return r.id() === id;
+        });
+      },
+      add: function(id, pos) {
+        var ribbon, _i, _len, _ref;
+        _ref = ribbons.withId(id);
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          ribbon = _ref[_i];
+          ribbon.close();
+        }
+        ribbon = Ribbon(context, id);
+        ribbon.extend(pos);
+        return ribbons.push(ribbon);
+      },
+      remove: function(ribbon) {
+        var i;
+        ribbon.close();
+        i = ribbons.indexOf(ribbon);
+        if (i >= 0) {
+          return ribbons.splice(i, 1);
+        }
+      },
+      draw: function() {
+        ribbons.map(function(ribbon) {
+          return ribbon.draw();
+        });
+        return window.requestAnimationFrame(context.fillBackground);
+      },
+      trim: function() {
+        return ribbons.map(function(ribbon) {
+          ribbon.trim();
+          if (ribbon.isDone()) {
+            return ribbons.remove(ribbon);
+          }
+        });
+      },
+      jitter: function() {
+        return ribbons.map(function(ribbon) {
+          return ribbon.jitter();
+        });
+      }
+    });
+    return {
+      startRender: startRender,
+      addRibbon: function(id, ev) {
+        return ribbons.add(id, canvas.position(ev));
+      },
+      extendRibbon: function(id, ev) {
+        var ribbon, _i, _len, _ref, _results;
+        _ref = ribbons.withId(id);
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          ribbon = _ref[_i];
+          _results.push(ribbon.extend(canvas.position(ev)));
+        }
+        return _results;
+      },
+      closeRibbon: function(id) {
+        var ribbon, _i, _len, _ref, _results;
+        _ref = ribbons.withId(id);
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          ribbon = _ref[_i];
+          _results.push(ribbon.close());
+        }
+        return _results;
+      }
+    };
+  };
 
-	function position(ev){
-		return {
-			x: ev.pageX - canvas.offsetLeft,
-			y: ev.pageY - canvas.offsetTop,
-		};
-	}
+  Ribbon = function(context, id) {
+    var closed, color, self, width;
+    closed = false;
+    color = randomColor();
+    width = 4;
+    return self = extended([], {
+      id: function() {
+        return id;
+      },
+      isClosed: function() {
+        return closed;
+      },
+      close: function() {
+        return closed = true;
+      },
+      extend: function(p) {
+        var last;
+        if (self.isClosed()) {
+          return;
+        }
+        if (self.length === 0) {
+          return self.push(p);
+        }
+        last = self[self.length - 1];
+        if (manhattan(last, p) > 10) {
+          return self.push(p);
+        }
+      },
+      isDone: function() {
+        return self.isClosed() && self.length < 3;
+      },
+      jitter: function() {
+        return self.map(function(p) {
+          p.x += Math.random() * 2 - 1;
+          return p.y += Math.random() * 2 - 1;
+        });
+      },
+      trim: function() {
+        if (self.isClosed() || (self.length > 2)) {
+          return self.shift();
+        }
+      },
+      draw: function() {
+        var i;
+        context.strokeStyle = color;
+        context.lineWidth = width;
+        context.beginPath();
+        context.moveTo(self[0].x, self[0].y);
+        i = 1;
+        while (i < self.length) {
+          context.lineTo(self[i].x, self[i].y);
+          i += 1;
+        }
+        return context.stroke();
+      }
+    });
+  };
 
-	function Ribbon(){
-		var rib = extended(Line(randomColor(), 4), {	
-			closed: false,
-			extend: function(p){
-				if(rib.length == 0){
-					rib.push(p);
-					return;
-				}
-				var last = rib[rib.length-1];
-				if(manhattan(last, p) > 10){
-					rib.push(p);
-				}
-			},
-			close: function(){
-				rib.closed = true;
-			},
-			isDone: function(){
-				return rib.closed && (rib.length < 3)
-			},
-			jitter: function(){
-				rib.map(function(p){
-					p.x += Math.random()*2 - 1;
-					p.y += Math.random()*2 - 1;
-				});
-			},
-			trim: function(){
-				if(rib.closed || (rib.length > 2)){
-					rib.shift();
-				}
-			},
-			draw: function(){
-				rib.renderTo(context);
-			},
-			// behavior
-			_trimming: window.setInterval(function(){
-				rib.trim();
-				if(rib.isDone()){
-					ribbons.remove(rib);
-					window.clearInterval(rib._trimming);
-					window.clearInterval(rib._updating);
-				}
-			}, 30),
-			_updating: window.setInterval(function(){
-				rib.jitter();
-			}, 10)
-		});
-		return rib;
-	}
+  Inputs = function(inputs, drawing) {
+    inputs = extended(inputs, {
+      when: function(events) {
+        return inputs.map(function(input) {
+          return input.listenTo(events);
+        });
+      }
+    });
+    return {
+      startTracking: function() {
+        return inputs.when({
+          down: function(id, ev) {
+            return drawing.addRibbon(id, ev);
+          },
+          move: function(id, ev) {
+            return drawing.extendRibbon(id, ev);
+          },
+          up: function(id, ev) {
+            return drawing.closeRibbon(id);
+          }
+        });
+      }
+    };
+  };
 
-	return {
-		open: open,
-		ribbons: ribbons,
-		draw: draw
-	};
-}
+  Mouse = function(element) {
+    var bindings;
+    bindings = {};
+    whenEvent(element, "mouse", "down move up", function(action, ev) {
+      var fn;
+      fn = bindings[action];
+      return fn && fn("mouse", ev);
+    });
+    return {
+      listenTo: function(events) {
+        return bindings = events;
+      }
+    };
+  };
 
-var inputs = Inputs([Mouse(document), Touch(document)]);
-var canvas = document.getElementById("ribbons");
-var context = canvas.getContext("2d");
+  Touch = function(element) {
+    var bindings, translate;
+    bindings = {};
+    translate = {
+      start: "down",
+      move: "move",
+      end: "up",
+      cancel: "up"
+    };
+    whenEvent(element, "touch", "start move end cancel", function(action, ev) {
+      return ev.changedTouches.map(function(touch) {
+        var fn;
+        fn = bindings[translate[action]];
+        return fn && fn(touch.identifier, ev);
+      });
+    });
+    return {
+      listenTo: function(events) {
+        return bindings = events;
+      }
+    };
+  };
 
-var drawing = Drawing(inputs, canvas, context);
-startRender(drawing.draw);
+  randomColor = function() {
+    return "hsla(" + ((Math.random() * 360) | 0) + ", 60%, 60%, 1)";
+  };
 
-// implements a simple line
-function Line(color, width){
-	var line = extended([],{
-		color: color,
-		width: width,
-		extend: function(pt){
-			line.push(pt);
-		},
-		renderTo: function(context){
-			context.strokeStyle = line.color;
-			context.lineWidth = line.width;
-			context.beginPath();
-			context.moveTo(line[0].x, line[0].y);
-			for(var i = 1; i < line.length; i += 1){
-				context.lineTo(line[i].x, line[i].y);
-			}
-			context.stroke();
-		}
-	});
-	return line;
-};
+  manhattan = function(a, b) {
+    return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+  };
 
-// composits multiple inputs
-function Inputs(inputs){	
-	return {
-		when: function(events){
-			inputs.map(function(input){
-				input.when(events);
-			})
-		}
-	};
-}
+  whenEvent = function(element, prefix, suffixes, fn) {
+    return suffixes.split(" ").map(function(suffix) {
+      return element.addEventListener(prefix + suffix, function(ev) {
+        fn(suffix, ev);
+        return ev.preventDefault();
+      });
+    });
+  };
 
-// handles "down", "move", "up" events
-function Mouse(element){
-	var bindings = {}
-	when(element, "mouse", "down move up", function(action, ev){
-		var fn = bindings[action];
-		fn && fn("mouse", ev);
-	});
-	return {
-		when: function(events, fn){ bindings = events; }
-	};
-}
+  extended = function(object, extension) {
+    var name;
+    for (name in extension) {
+      if (!(extension.hasOwnProperty(name))) {
+        continue;
+      }
+      if (object[name]) {
+        throw "name clash with " + name;
+      }
+      object[name] = extension[name];
+    }
+    return object;
+  };
 
-// handles "down", "move", "up" events
-function Touch(element){
-	var translate = {
-		"start": "down", 
-		"move": "move", 
-		"end": "up", 
-		"cancel": "up"
-	};
+  canvas = document.getElementById("ribbons");
 
-	var bindings = {};
+  context = canvas.getContext("2d");
 
-	when(element, "touch", "start move end cancel", function(action, ev){
-		ev.changedTouches.map(function(touch){
-			var fn = bindings[translate[action]];
-			fn && fn(touch.identifier, ev);
-		});
-	});
+  drawing = Drawing(canvas, context);
 
-	return {
-		when: function(events){	bindings = events; }
-	};
-}
+  inputs = Inputs([Mouse(canvas, Touch(canvas))], drawing);
 
-// other utilities
-function randomColor(){
-	return "hsla(" + ((Math.random()*360)|0) + ", 60%, 60%, 1)";
-}
+  drawing.startRender();
 
-function manhattan(a, b){
-  return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
-};
+  inputs.startTracking();
 
-function when(element, prefix, suffixes, fn){
-	suffixes.split(" ").map(function(suffix){
-		element.addEventListener(prefix + suffix, function(ev){
-			fn(suffix, ev);
-			ev.preventDefault();
-		});
-	});
-};
+}).call(this);
 
-function extended(object, extension){
-	for(var name in extension){
-		if(!extension.hasOwnProperty(name)) continue;
-		// if(object[name]) throw "name clash with " + name;
-		object[name] = extension[name];
-	}
-	return object;
-}
+ //# sourceMappingURL=main.js.map
