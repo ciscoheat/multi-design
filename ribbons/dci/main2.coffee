@@ -23,7 +23,7 @@ Drawing = (input, canvas, context) ->
 			context.fillStyle = "hsla(0,100%,100%,0.2)"
 			context.fillRect 0, 0, canvas.width, canvas.height
 
-			ribbons.render()
+			ribbons.draw()
 
 	canvas = extended canvas,
 		position: (ev) ->
@@ -38,7 +38,7 @@ Drawing = (input, canvas, context) ->
 			i = ribbons.indexOf item
 			ribbons.splice i, 1 if i >= 0
 
-		render: ->
+		draw: ->
 			context.save()
 			ribbons.map (ribbon) ->	ribbon.draw()
 			context.restore()
@@ -74,9 +74,7 @@ Drawing = (input, canvas, context) ->
 
 # A ribbon
 Ribbon = (context) ->
-	rib = []
-
-	rib = extended rib,
+	rib = extended [],
 		color: randomColor()
 		width: 4
 		closed: false
@@ -113,7 +111,6 @@ Ribbon = (context) ->
 				i += 1
 
 			context.stroke()
-	rib
 
 # composits multiple inputs
 Inputs = (inputs) ->
@@ -124,6 +121,7 @@ Inputs = (inputs) ->
 # handles "down", "move", "up" events
 Mouse = (element) ->
 	bindings = {}
+
 	whenEvent element, "mouse", "down move up", (action, ev) ->
 		fn = bindings[action]
 		fn and fn("mouse", ev)
@@ -133,13 +131,14 @@ Mouse = (element) ->
 
 # handles "down", "move", "up" events
 Touch = (element) ->
+	bindings = {}
+
 	translate =
 		start: "down"
 		move: "move"
 		end: "up"
 		cancel: "up"
 
-	bindings = {}
 	whenEvent element, "touch", "start move end cancel", (action, ev) ->
 		ev.changedTouches.map (touch) ->
 			fn = bindings[translate[action]]
