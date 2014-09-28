@@ -1,109 +1,119 @@
 Drawing = (input, canvas, context) ->
-	draw = ->
-		# background fade
-		context.fillStyle = "hsla(0,100%,100%,0.2)"
-		context.fillRect 0, 0, canvas.width, canvas.height
-		
-		# render ribbons
-		ribbons.map (ribbon) ->
-			context.save()
-			ribbon.draw()
-			context.restore()
+	##### Context state #####
 
-	position = (ev) ->
-		x: ev.pageX - canvas.offsetLeft
-		y: ev.pageY - canvas.offsetTop
+	open = {}
+	ribbons = []
 
-	Ribbon = ->
-		rib = extended(Line(randomColor(), 4),
-			closed: false
+	##### System Operations #####
 
-			extend: (p) ->
-				return rib.push p if rib.length is 0
-				last = rib[rib.length - 1]
-				rib.push p if manhattan(last, p) > 10
+	startRender = ->
+		window.setInterval ribbons.trim, 30
+		window.setInterval ribbons.jitter, 10
 
-			close: ->
-				rib.closed = true
+		cb = ->
+			context.fillBackground()
+			window.requestAnimationFrame cb
+		cb()
 
-			isDone: ->
-				rib.closed and (rib.length < 3)
+	##### RoleMethods #####
 
-			jitter: ->
-				rib.map (p) ->
-					p.x += Math.random() * 2 - 1
-					p.y += Math.random() * 2 - 1
+	context = extended context,
+		fillBackground: ->
+			# background fade
+			context.fillStyle = "hsla(0,100%,100%,0.2)"
+			context.fillRect 0, 0, canvas.width, canvas.height
 
-			trim: ->
-				rib.shift() if rib.closed or (rib.length > 2)
+			ribbons.render()
 
-			draw: ->
-				rib.renderTo context
-			
-			# behavior
-			_trimming: window.setInterval(->
-				rib.trim()
-				if rib.isDone()
-					ribbons.remove rib
-					window.clearInterval rib._trimming
-					window.clearInterval rib._updating
-			, 30)
+	canvas = extended canvas,
+		position: (ev) ->
+			x: ev.pageX - canvas.offsetLeft
+			y: ev.pageY - canvas.offsetTop
 
-			_updating: window.setInterval (-> rib.jitter()), 10
-		)
-		rib
-
-	ribbons = extended([],
+	ribbons = extended ribbons,
 		add: (item) ->
 			ribbons.push item
 
 		remove: (item) ->
-			i = ribbons.indexOf(item)
-			ribbons.splice i, 1  if i >= 0
-	)
-	open = {}
+			i = ribbons.indexOf item
+			ribbons.splice i, 1 if i >= 0
+
+		render: ->
+			context.save()
+			ribbons.map (ribbon) ->	ribbon.draw()
+			context.restore()
+
+		trim: ->
+			ribbons.map (ribbon) ->
+				ribbon.trim()
+				ribbons.remove ribbon if ribbon.isDone()
+
+		jitter: ->
+			ribbons.map (ribbon) -> 
+				ribbon.jitter()
+
 	input.when
 		down: (id, ev) ->
-			open[id].close()  if open[id]?
-			rib = Ribbon(Line())
-			rib.extend position(ev)
+			open[id].close() if open[id]?
+			rib = Ribbon context
+			rib.extend canvas.position(ev)
 			open[id] = rib
 			ribbons.add rib
 
 		move: (id, ev) ->
 			rib = open[id]
-			rib and rib.extend(position(ev))
+			rib and rib.extend(canvas.position(ev))
 
 		up: (id, ev) ->
 			if open[id]
 				open[id].close()
 				delete open[id]
 
-	open: open
 	ribbons: ribbons
-	draw: draw
+	startRender: startRender
 
-# implements a simple line
-Line = (color, width) ->
-	line = extended([],
-		color: color
-		width: width
-		extend: (pt) ->
-			line.push pt
+# A ribbon
+Ribbon = (context) ->
+	rib = []
 
-		renderTo: (context) ->
-			context.strokeStyle = line.color
-			context.lineWidth = line.width
+	rib = extended rib,
+		color: randomColor()
+		width: 4
+		closed: false
+
+		extend: (p) ->
+			return rib.push p if rib.length is 0
+			last = rib[rib.length - 1]
+			rib.push p if manhattan(last, p) > 10
+
+		close: ->
+			rib.closed = true
+
+		isDone: ->
+			rib.closed and rib.length < 3
+
+		jitter: ->
+			rib.map (p) ->
+				p.x += Math.random() * 2 - 1
+				p.y += Math.random() * 2 - 1
+
+		trim: ->
+			rib.shift() if rib.closed or (rib.length > 2)
+
+		draw: ->
+			context.strokeStyle = rib.color
+			context.lineWidth = rib.width
+
 			context.beginPath()
-			context.moveTo line[0].x, line[0].y
-			i = 1
+			context.moveTo rib[0].x, rib[0].y
 
-			while i < line.length
-				context.lineTo line[i].x, line[i].y
+			i = 1
+			while i < rib.length
+				context.lineTo rib[i].x, rib[i].y
 				i += 1
+
 			context.stroke()
-	)
-	line
+	rib
 
 # composits multiple inputs
 Inputs = (inputs) ->
@@ -153,17 +163,17 @@ whenEvent = (element, prefix, suffixes, fn) ->
 
 extended = (object, extension) ->
 	for name of extension when extension.hasOwnProperty(name)
-		# if(object[name]) throw "name clash with " + name;
+		throw "name clash with " + name if object[name]
 		object[name] = extension[name]
 	object
 
 inputs = Inputs([
-	Mouse(document)
-	Touch(document)
+	Mouse document
+	Touch document
 ])
 
-canvas = document.getElementById("ribbons")
-context = canvas.getContext("2d")
-drawing = Drawing(inputs, canvas, context)
+canvas = document.getElementById "ribbons"
+context = canvas.getContext "2d"
+drawing = Drawing inputs, canvas, context
 
-startRender drawing.draw
+drawing.startRender()
