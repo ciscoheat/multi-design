@@ -1,3 +1,7 @@
+###
+Fiddle around with it: http://jsfiddle.net/6pddkcsr/
+###
+
 ##### Drawing #####
 
 Drawing = (canvas, context) ->

@@ -1,3 +1,8 @@
+/*
+Fiddle around with it: http://jsfiddle.net/6pddkcsr/
+*/
+
+
 (function() {
   var Drawing, Inputs, Mouse, Ribbon, Touch, canvas, context, drawing, extended, inputs, manhattan, randomColor, whenEvent;
 
