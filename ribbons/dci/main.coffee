@@ -1,18 +1,9 @@
 ##### Drawing #####
 
 Drawing = (canvas, context) ->
-	##### Context state #####
+	##### Roles and RoleMethods #####
 
 	ribbons = []
-
-	##### System Operations #####
-
-	startRender = ->
-		window.setInterval ribbons.trim, 30
-		window.setInterval ribbons.jitter, 10
-		window.requestAnimationFrame context.fillBackground
-
-	##### RoleMethods #####
 
 	context = extended context,
 		fillBackground: ->
@@ -59,9 +50,12 @@ Drawing = (canvas, context) ->
 			ribbons.map (ribbon) -> 
 				ribbon.jitter()
 
-	##### Public API #####
+	##### System Operations #####
 
-	startRender: startRender
+	startRender: ->
+		window.setInterval ribbons.trim, 30
+		window.setInterval ribbons.jitter, 10
+		window.requestAnimationFrame context.fillBackground
 
 	addRibbon: (id, ev) -> 
 		ribbons.add id, canvas.position ev
@@ -77,16 +71,20 @@ Drawing = (canvas, context) ->
 ##### Ribbon #####
 
 Ribbon = (context, id) ->
+	##### Roles and RoleMethods #####
 
-	##### Context state #####
+	context = context
 
+	##### State #####
+
+	id = id
 	closed = false
 	color = randomColor()
 	width = 4
 
 	self = extended [],
 
-		##### Public API #####
+		##### System Operations #####
 
 		id: -> id
 		isClosed: -> closed
@@ -128,10 +126,18 @@ Ribbon = (context, id) ->
 
 # composits multiple inputs
 Inputs = (inputs, drawing) ->
+
+	##### Roles and RoleMethods #####
+
+	drawing = drawing
+	context = context
+
 	inputs = extended inputs,
 		when: (events) ->
 			inputs.map (input) ->
 				input.listenTo events
+
+	##### System Operations #####
 
 	startTracking: ->
 		inputs.when

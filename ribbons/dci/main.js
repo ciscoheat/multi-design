@@ -2,13 +2,8 @@
   var Drawing, Inputs, Mouse, Ribbon, Touch, canvas, context, drawing, extended, inputs, manhattan, randomColor, whenEvent;
 
   Drawing = function(canvas, context) {
-    var ribbons, startRender;
+    var ribbons;
     ribbons = [];
-    startRender = function() {
-      window.setInterval(ribbons.trim, 30);
-      window.setInterval(ribbons.jitter, 10);
-      return window.requestAnimationFrame(context.fillBackground);
-    };
     context = extended(context, {
       fillBackground: function() {
         context.fillStyle = "hsla(0,100%,100%,0.2)";
@@ -70,7 +65,11 @@
       }
     });
     return {
-      startRender: startRender,
+      startRender: function() {
+        window.setInterval(ribbons.trim, 30);
+        window.setInterval(ribbons.jitter, 10);
+        return window.requestAnimationFrame(context.fillBackground);
+      },
       addRibbon: function(id, ev) {
         return ribbons.add(id, canvas.position(ev));
       },
@@ -99,6 +98,8 @@
 
   Ribbon = function(context, id) {
     var closed, color, self, width;
+    context = context;
+    id = id;
     closed = false;
     color = randomColor();
     width = 4;
@@ -156,6 +157,9 @@
   };
 
   Inputs = function(inputs, drawing) {
+    var context;
+    drawing = drawing;
+    context = context;
     inputs = extended(inputs, {
       when: function(events) {
         return inputs.map(function(input) {
